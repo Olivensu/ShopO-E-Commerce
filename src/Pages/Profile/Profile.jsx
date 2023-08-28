@@ -15,14 +15,15 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ReviewsIcon from '@mui/icons-material/Reviews';
 import PinIcon from '@mui/icons-material/Pin';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Profile = () => {
     const [user, loading,] = useAuthState(auth);
     const [userinfo, setUserinfo] = useState([]);
     const [userShop, setUserShop] = useState([]);
-    // const navigate = useNavigate();
+    const navigate  = useNavigate()
+    
     const logout = () => {
         signOut(auth);
       };
@@ -40,8 +41,11 @@ const Profile = () => {
         return <Loading></Loading>
       }
 // console.log(userinfo);
-      const {_id,name, email,phone,address, image, isSeller} = userinfo;
-      
+      const {name, email,phone,address, image, isSeller} = userinfo;
+      const handleShopDetails = slug =>{
+        navigate(`/shop/${slug}`)
+        // console.log(slug);
+    }
     return (
         <div>
             <div className="text-black font-bold text-start mx-10">
@@ -86,11 +90,10 @@ const Profile = () => {
                     userShop.map(data=> <div className="flex justify-start items-center w-96 p-2 rounded-2xl border-x-red border-y-orange m-auto border-2 shadow-lg shadow-blue my-5" key={data._id}>
                         <img className="w-32" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${data.image}`} alt="Image Not Found" />
                         <div className="text-start">
-                            <p className="text-xl font-bold">{data.name}</p>
+                            <p onClick={()=>handleShopDetails(data.slug)} className="text-xl font-bold hover:text-blue cursor-pointer">{data.name}</p>
                             <p className="py-1 font-bold">{data.email}</p>
                             <p>{data.phone}</p>
                             <p>{data.city}</p>
-                            <p>{data.zip}</p>
                         </div>
                     </div>)
                 }

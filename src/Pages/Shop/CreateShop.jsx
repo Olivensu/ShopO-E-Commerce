@@ -6,8 +6,9 @@ import {  useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init'
 import { toast } from 'react-toastify';
 import Loading from '../Shared/Loading';
+import { checkPropTypes } from 'prop-types';
 
-const CreateShop = () => {
+const CreateShop = ({shopName}) => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
@@ -20,6 +21,7 @@ const CreateShop = () => {
     if (loading) {
         return (<Loading></Loading>);
       }
+      console.log(shopName);
 
     const handleSubmit = (e)=>{
         e.preventDefault();
@@ -134,4 +136,7 @@ const CreateShop = () => {
     );
 };
 
+CreateShop.propTypes = {
+  shopName: checkPropTypes,
+};
 export default CreateShop;

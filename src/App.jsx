@@ -15,6 +15,8 @@ import CreateCategories from './Pages/Categories/CreateCategories';
 import Categories from './Pages/Categories/Categories';
 import CreateShop from './Pages/Shop/CreateShop';
 import Profile from './Pages/Profile/Profile';
+import ShopDetails from './Pages/Shop/ShopDetails';
+import CreateProduct from './Pages/Products/CreateProduct';
 
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
           <Route path="/categories" element={<Categories></Categories>}></Route>
           <Route path="/create-categories" element={<CreateCategories></CreateCategories>}></Route>
           <Route path="/create-shop" element={<CreateShop></CreateShop>}></Route>
+          <Route path='/shop/:slug' element={<ShopDetails></ShopDetails>}></Route>
+          <Route path='/create-product/:shopSlug' element={<CreateProduct></CreateProduct>}></Route>
         </Routes>
         <Footer></Footer>
         <ToastContainer />
