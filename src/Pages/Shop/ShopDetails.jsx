@@ -19,7 +19,6 @@ const ShopDetails = () => {
             .then(res=>{
                 setShop(res.data.payload[0])
             })
-
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product/shop/${slug}`)
             .then(res=>{
                 setProducts(res.data.payload.products)
@@ -88,6 +87,7 @@ const ShopDetails = () => {
                   <p className="py-1">
                     {data.description.split(" ").slice(0, 20).join(" ")}
                   </p>
+                  <p className="my-1 font-bold">{data.shop}</p>
                   <p className="line-through text-gray">৳ {data.price}</p>
                   <p className="font-bold mt-2">৳ {data.discountPrice}</p>
                   <p className="flex justify-between items-center w-full">

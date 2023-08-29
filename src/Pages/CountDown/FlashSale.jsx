@@ -2,6 +2,9 @@
 // import { useState } from 'react';
 import FlashSaleCountdown from './FlashSaleCountdown ';
 import flash from '../../img/flash-sale/c8fdb978-acd8-4e5b-9e04-374607ec6705.gif'
+import Products from '../Products/Products';
+import { Link } from 'react-router-dom';
+import Shops from '../Shop/Shops';
 
 const FlashSale = () => {
     // const [userInput, setUserInput] = useState('');
@@ -36,12 +39,14 @@ const FlashSale = () => {
         )}
         <div className='flex justify-between items-center px-5 my-5'>
             <p className='text-white text-xl'>Products</p>
-            <button className='btn rounded-full'>Show More</button>
+            <Link to='/products'><button className='inline-block btn'>Show More</button></Link>
         </div>
+        <Products></Products>
         <div className='flex justify-between items-center px-5 my-5'>
             <p className='text-white text-xl'>Shop</p>
-            <button className='btn rounded-full'>Show More</button>
+            <Link to='/products'><button className='inline-block btn'>Show More</button></Link>
         </div>
+        <Shops></Shops>
       </div>
     );
   };

@@ -637,6 +637,7 @@ const top100Films = [
             </ul>
             <div className='flex lg:flex inline lg:hidden'>
             <ul className="menu">
+              <Link to='/shop'>
               <li>
                 <p>
                   <StorefrontIcon
@@ -646,6 +647,7 @@ const top100Films = [
                   Shop
                 </p>
               </li>
+              </Link>
             </ul>
             <Link to='/categories' ><ul className="menu">
               <li>
@@ -685,6 +687,7 @@ const top100Films = [
             </ul>
             </Link>
             <ul className="menu ml-3">
+            <Link to='/shop'>
               <li>
                 <p>
                   <StorefrontIcon
@@ -694,6 +697,7 @@ const top100Films = [
                   Shop
                 </p>
               </li>
+              </Link>
             </ul>
             <Link to='/categories'><ul className="menu ml-3">
               <li>
@@ -840,9 +844,9 @@ const top100Films = [
               </li>
             </ul> */}
 
-            <button className="bg-black text-white py-2 px-5 hidden lg:inline">
+            <Link to='/create-shop'><button className="bg-black text-white py-2 px-5 hidden lg:inline">
               Become a Seller
-            </button>
+            </button></Link>
           </div>
         </div>
       </div>

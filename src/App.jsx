@@ -17,6 +17,7 @@ import CreateShop from './Pages/Shop/CreateShop';
 import Profile from './Pages/Profile/Profile';
 import ShopDetails from './Pages/Shop/ShopDetails';
 import CreateProduct from './Pages/Products/CreateProduct';
+import TotalShop from './Pages/Shop/TotalShop';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/create-categories" element={<CreateCategories></CreateCategories>}></Route>
           <Route path="/create-shop" element={<CreateShop></CreateShop>}></Route>
           <Route path='/shop/:slug' element={<ShopDetails></ShopDetails>}></Route>
+          <Route path='/shop' element={<TotalShop></TotalShop>}></Route>
           <Route path='/create-product/:shopSlug' element={<CreateProduct></CreateProduct>}></Route>
         </Routes>
         <Footer></Footer>

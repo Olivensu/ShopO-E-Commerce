@@ -2,6 +2,9 @@
 import Banner1 from './Banner1'
 import Brand from './Brand'
 import FlashSale from '../CountDown/FlashSale'
+import DealDay from '../Products/DealDay'
+import Trending from './Trainding'
+import Popular from './Popular'
 // import { useAuthState } from 'react-firebase-hooks/auth';
 // import auth from '../../../firebase.init';
 // import { useNavigate } from 'react-router-dom';
@@ -22,7 +25,10 @@ const Home = () => {
     <div className=' mx-auto bg-[#F8F8F8]'>
         <div className='max-w-screen-xl mx-auto p-3'>
         <Banner1></Banner1>
+        <DealDay></DealDay>
         <FlashSale></FlashSale>
+        <Trending></Trending>
+        <Popular></Popular>
         <Brand></Brand>
         </div>
     </div>
