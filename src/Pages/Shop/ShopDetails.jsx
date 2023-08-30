@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../Shared/Loading";
 import { Slider } from "@mui/material";
 
@@ -13,6 +13,7 @@ const ShopDetails = () => {
     const [shop, setShop] = useState([]);
     const [products, setProducts] = useState([]);
     // console.log(products);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/shop/${slug}`)
@@ -30,6 +31,9 @@ const ShopDetails = () => {
     if(!products){
         return <Loading></Loading>
     }
+    const productDetails =(id)=>{
+      navigate(`/product/${id}`)
+    }
     // console.log(shop)
 
 //     const details = data.find((c) => c.id === slug);
@@ -46,14 +50,15 @@ const ShopDetails = () => {
             }`}
             alt="Image Not Found"
           />
-          <div>
-            <p className="text-start text-xl font-bold my-1">
+          <div className="text-start">
+            <p className=" text-xl font-bold my-1">
               Name: {shop.name}
             </p>
-            <p className="text-start text-lg my-1">Email: {shop.email}</p>
-            <p className="text-start text-lg my-1">Phone: {shop.phone}</p>
-            <p className="text-start text-lg my-1">Address: {shop.city}</p>
-            <p className="text-start text-lg my-1">Zip: {shop.zip}</p>
+            <p className=" text-lg my-1">Email: {shop.email}</p>
+            <p className=" text-lg my-1">Phone: {shop.phone}</p>
+            <p className=" text-lg my-1">Address: {shop.city}</p>
+            <p className=" text-lg my-1">Zip: {shop.zip}</p>
+            <p className='bg-blue text-start inline-block px-1 rounded-lg bg-opacity-50 mt-2 tooltip'  data-tip="Cash On Delivery">COD</p>
           </div>
         </div>
         <div>
@@ -81,7 +86,7 @@ const ShopDetails = () => {
                   alt="Image Not Found"
                 />
                 <div className="text-start">
-                  <p className="text-xl font-bold hover:text-blue cursor-pointer">
+                  <p  onClick={()=>productDetails(data._id)} className="text-xl font-bold hover:text-blue cursor-pointer">
                     {data.name}
                   </p>
                   <p className="py-1">

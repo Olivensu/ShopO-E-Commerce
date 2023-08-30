@@ -2,10 +2,12 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Slider } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const Products = () => {
     const [products, setProducts] = useState([])
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product/`)
@@ -13,6 +15,12 @@ const Products = () => {
                 setProducts(res.data.payload)
             })
       }, [])
+      const productDetails =(id)=>{
+        navigate(`/product/${id}`)
+      }
+      const shopDetails =(slug)=>{
+        navigate(`/shop/${slug}`)
+      }
     return (
         <div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
@@ -29,10 +37,10 @@ const Products = () => {
                       alt="Image Not Found"
                     />
                     <div className="text-start">
-                      <p className="text-lg font-bold hover:text-blue cursor-pointer">
+                      <p onClick={()=>productDetails(data._id)} className="text-lg font-bold hover:text-blue cursor-pointer">
                         {data.name.split(' ').slice(0,5).join(' ')}
                       </p>
-                      <p className="my-1 font-bold">{data.shop}</p>
+                      <p onClick={()=>shopDetails(data.shopSlug)} className="my-1 font-bold cursor-pointer hover:underline">{data.shop}</p>
                       <p className="line-through text-gray">৳ {data.price}</p>
                       <p className="font-bold mt-2">৳ {data.discountPrice}</p>
                       <p className="flex justify-between items-center w-full">

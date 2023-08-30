@@ -39,7 +39,7 @@ const Brand = () => {
             <div className='p-8 flex items-center justify-center border-2 border-gray'><img className='w-full' src={brand11} alt="" /></div>
             <div className='p-8 flex items-center justify-center border-2 border-gray'><img className='w-full' src={brand12} alt="" /></div>
         </div>
-        <div className='my-10 m-auto '>
+        {/* <div className='my-10 m-auto '>
         <Swiper
         slidesPerView={2}
         spaceBetween={10}
@@ -80,7 +80,7 @@ const Brand = () => {
         <SwiperSlide><div className='p-8 flex w-52 h-32 items-center justify-center border-2 border-gray'><img className='w-full' src={brand3} alt="" /> </div></SwiperSlide>
         <SwiperSlide><div className='p-8 flex w-52 h-32 items-center justify-center border-2 border-gray'><img className='w-full' src={brand3} alt="" /> </div></SwiperSlide>
       </Swiper>
-        </div>
+        </div> */}
     </div>
   )
 }

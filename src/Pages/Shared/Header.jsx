@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import Paper from '@mui/material/Paper';
 // import InputBase from '@mui/material/InputBase';
 import Divider from '@mui/material/Divider';
@@ -42,9 +42,12 @@ import { signOut } from 'firebase/auth';
 import auth from '../../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Loading from './Loading';
+import CartItem from '../Hooks/CartItem';
 
 const Header = () => {
   const [user, loading, error] = useAuthState(auth);
+  const items = CartItem();
+  console.log(items.length);
 
   const [state, setState] = React.useState({
     top: false,
@@ -408,7 +411,7 @@ const top100Films = [
       </div>
       <hr />
 
-      <div className="flex justify-between items-center max-w-screen-xl mx-auto my-2">
+      <div className="flex justify-between items-center max-w-screen-xl mx-auto">
         <Link to='/'><img className="w-24 md:w-28 lg:w-36 ml-3 " src={second} alt="" /></Link>
         {/* <IconButton sx={{  }} aria-label="menu">
         <img className='w-2/3 md:w-full' src={second} alt="" />
@@ -441,10 +444,13 @@ const top100Films = [
         </button>
         <div className="flex justify-end items-center">
           <div className="hidden lg:inline mr-[-10px] ml-1 mr-2">
-            {/* <Divider sx={{ height: 28, m: 1 }} orientation="vertical" /> */}
+            <div>
+              {/* <Divider sx={{ height: 28, m: 1 }} orientation="vertical" /> */}
             <IconButton color="primary" sx={{ p: "" }} aria-label="directions">
-              <AddShoppingCartIcon />
+              <AddShoppingCartIcon style={{fontSize: '2rem'}}/>
             </IconButton>
+            </div>
+            <Link to='cart-item'><p className='text-xs inline absolute mt-[-50px] ml-3 bg-blue px-1 rounded-full'>{items.length}</p></Link>
           </div>
           {/* <Divider sx={{ height: 28, m: 1 }} orientation="vertical" /> */}
           {user ? (
@@ -453,7 +459,7 @@ const top100Films = [
                 <li>
                   <details>
                     <summary>
-                      <AccountCircleIcon />
+                      <AccountCircleIcon  style={{fontSize: '2rem'}}/>
                     </summary>
                     <div className="absolute shadow-orange shadow-2xl bg-gray-light text-black p-2 rounded-xl ml-[-150px] w-64 mt-2   z-50">
                       <li>
@@ -467,6 +473,18 @@ const top100Films = [
                       </li>
                       <li className='mt-2'>
                         <Link to='/profile'>Profile</Link>
+                      </li>
+                      <li>
+                      <div className="">
+            <div>
+              {/* <Divider sx={{ height: 28, m: 1 }} orientation="vertical" /> */}
+              Your Cart: 
+            <IconButton color="primary" sx={{ p: "" }} aria-label="directions">
+              <AddShoppingCartIcon style={{fontSize: '2rem'}}/>
+            </IconButton>
+            </div>
+            <Link to='cart-item'><p className='text-xs inline absolute mt-[-25px] ml-[-20px] bg-blue px-1 rounded-full'>{items.length}</p></Link>
+          </div>
                       </li>
                       <button
                         className="btn btn-warning w-full mt-3"

@@ -6,7 +6,7 @@ import '@fontsource/roboto/700.css';
 import Header from './Pages/Shared/Header';
 import Home from './Pages/Home/Home';
 import Footer from './Pages/Shared/Footer';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Register from './Pages/Forms/Register';
 import Login from './Pages/Forms/Login';
 import { ToastContainer } from 'react-toastify';
@@ -18,13 +18,25 @@ import Profile from './Pages/Profile/Profile';
 import ShopDetails from './Pages/Shop/ShopDetails';
 import CreateProduct from './Pages/Products/CreateProduct';
 import TotalShop from './Pages/Shop/TotalShop';
+import ProductDetails from './Pages/Products/ProductDetails';
+import { useEffect } from 'react';
 
 
 function App() {
+  function ScrollToTop() {
+    const { pathname } = useLocation();
   
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+  
+    return null;
+  }
+
 
   return (
     <>
+    <ScrollToTop />
       <div className="m-auto text-center ">
         <Header></Header>
         <Routes>
@@ -38,6 +50,7 @@ function App() {
           <Route path='/shop/:slug' element={<ShopDetails></ShopDetails>}></Route>
           <Route path='/shop' element={<TotalShop></TotalShop>}></Route>
           <Route path='/create-product/:shopSlug' element={<CreateProduct></CreateProduct>}></Route>
+          <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
         </Routes>
         <Footer></Footer>
         <ToastContainer />

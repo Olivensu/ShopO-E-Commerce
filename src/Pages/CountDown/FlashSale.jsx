@@ -9,7 +9,7 @@ import Shops from '../Shop/Shops';
 const FlashSale = () => {
     // const [userInput, setUserInput] = useState('');
     // const [targetDate, setTargetDate] = useState(null);
-    const targetDate = new Date('2023-08-31T18:00:00');
+    const targetDate = new Date('2023-09-31T18:00:00');
   
     // const handleUserInputChange = (event) => {
     //   setUserInput(event.target.value);
