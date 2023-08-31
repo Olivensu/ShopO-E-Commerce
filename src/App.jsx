@@ -20,6 +20,9 @@ import CreateProduct from './Pages/Products/CreateProduct';
 import TotalShop from './Pages/Shop/TotalShop';
 import ProductDetails from './Pages/Products/ProductDetails';
 import { useEffect } from 'react';
+import CartProduct from './Pages/Products/CartProduct';
+import CheckOut from './Pages/Products/CheckOut';
+import Orders from './Pages/Orders/Orders';
 
 
 function App() {
@@ -51,6 +54,9 @@ function App() {
           <Route path='/shop' element={<TotalShop></TotalShop>}></Route>
           <Route path='/create-product/:shopSlug' element={<CreateProduct></CreateProduct>}></Route>
           <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
+          <Route path='/orders' element={<Orders></Orders>}></Route>
+          <Route path='/cart' element={<CartProduct></CartProduct>}></Route>
+          <Route path='/checkout/:propArray' element={<CheckOut></CheckOut>}></Route>
         </Routes>
         <Footer></Footer>
         <ToastContainer />

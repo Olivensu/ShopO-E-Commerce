@@ -29,7 +29,7 @@ const CartItem = () => {
     if(loading){
         return <Loading></Loading>
     }
-    console.log(cartProduct)
+    // console.log(cartProduct)
     return (cartProduct);
 };
 
