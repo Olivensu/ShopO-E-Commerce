@@ -37,10 +37,10 @@ const Products = () => {
                       alt="Image Not Found"
                     />
                     <div className="text-start">
-                      <p onClick={()=>productDetails(data._id)} className="text-lg font-bold hover:text-blue cursor-pointer">
-                        {data.name.split(' ').slice(0,5).join(' ')}
+                      <p onClick={()=>productDetails(data._id)} className="text-md font-bold hover:text-blue cursor-pointer">
+                        {data.name.split(' ').slice(0,4).join(' ')} ...
                       </p>
-                      <p onClick={()=>shopDetails(data.shopSlug)} className="my-1 font-bold cursor-pointer hover:underline">{data.shop}</p>
+                      <p onClick={()=>shopDetails(data.shopSlug)} className="my-1 text-sm font-bold cursor-pointer hover:underline">{data.shop}</p>
                       <p className="line-through text-gray">৳ {data.price}</p>
                       <p className="font-bold mt-2">৳ {data.discountPrice}</p>
                       <p className="flex justify-between items-center w-full">

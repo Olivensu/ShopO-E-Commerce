@@ -18,6 +18,7 @@ const ProductDetails = () => {
     const {id} = useParams();
     const [product,setProduct] = useState([])
     const [quantity,setQuantity] = useState(1)
+    let cart =  CartItem()
     // const [shop,setShop] = useState([])
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`)
@@ -28,12 +29,12 @@ const ProductDetails = () => {
         //     .then(res=>{
         //         setShop(res.data.payload[0])
         //     })
-    },[])
-    if(loading){
+    },[id])
+    if(loading || !product || !cart){
         return <Loading></Loading>
     }
-    console.log(product);
-    let cart =  CartItem()
+    // console.log(product);
+    
     
     // let sub = quantity-1;
     // let add = quantity+1;
@@ -62,7 +63,7 @@ const ProductDetails = () => {
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 text-start items-center">
           <img
-            className=""
+            className="px-16"
             src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${
               product.image
             }`}

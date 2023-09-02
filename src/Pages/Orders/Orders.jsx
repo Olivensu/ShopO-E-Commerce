@@ -28,10 +28,10 @@ const Orders = () => {
             <div className='my-5 bg-base-200 p-3 shadow-lg shadow-purple rounded-xl' key={item._id}>
                 {
                     item.order.map((item,index)=>(
-                        <div className="flex justify-around items-center " key={item._id}>
+                        <div className="flex justify-around items-center mb-5" key={item._id}>
                         
-                      <div className="flex text-start">
-                        <img className="w-20 mx-5" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${
+                      <div className="flex items-center text-start">
+                        <img className="w-20 mx-5 h-20" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${
                       item.cartItem.image
                     }`} alt="" />
                       <div className="">
@@ -62,7 +62,7 @@ const Orders = () => {
                     ))
                 }
                 <div className='flex justify-around items-center mt-5'>
-                    <p  className="border-2 bg-blue px-2 ml-10 inline-block rounded-lg">Ordered time: {item.createdAt.slice(0,11)}</p>
+                    <p  className="border-2 bg-blue px-2 ml-10 inline-block rounded-lg">Ordered date: {item.createdAt.slice(0,11)}</p>
                 <p className="border-2 bg-blue px-2 ml-10 inline-block rounded-lg">Status: {item.status}</p>
                 </div>
             </div>

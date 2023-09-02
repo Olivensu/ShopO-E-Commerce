@@ -26,7 +26,7 @@ const CartItem = () => {
     //   useEffect(() => {
     //     console.log(cartProduct.length);
     //   }, [cartProduct]);
-    if(loading){
+    if(loading || !cartProduct){
         return <Loading></Loading>
     }
     // console.log(cartProduct)

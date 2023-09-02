@@ -43,8 +43,8 @@ const FlashSale = () => {
         </div>
         <Products></Products>
         <div className='flex justify-between items-center px-5 my-5'>
-            <p className='text-white text-xl'>Shop</p>
-            <Link to='/products'><button className='inline-block btn'>Show More</button></Link>
+            <p className='text-white text-xl'>Shops</p>
+            <Link to='/shop'><button className='inline-block btn'>Show More</button></Link>
         </div>
         <Shops></Shops>
       </div>

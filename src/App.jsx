@@ -23,6 +23,8 @@ import { useEffect } from 'react';
 import CartProduct from './Pages/Products/CartProduct';
 import CheckOut from './Pages/Products/CheckOut';
 import Orders from './Pages/Orders/Orders';
+import Products from './Pages/Products/Products';
+import TotalProducts from './Pages/Products/TotalProducts';
 
 
 function App() {
@@ -51,6 +53,7 @@ function App() {
           <Route path="/create-categories" element={<CreateCategories></CreateCategories>}></Route>
           <Route path="/create-shop" element={<CreateShop></CreateShop>}></Route>
           <Route path='/shop/:slug' element={<ShopDetails></ShopDetails>}></Route>
+          <Route path='/products' element={<TotalProducts></TotalProducts>}></Route>
           <Route path='/shop' element={<TotalShop></TotalShop>}></Route>
           <Route path='/create-product/:shopSlug' element={<CreateProduct></CreateProduct>}></Route>
           <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>

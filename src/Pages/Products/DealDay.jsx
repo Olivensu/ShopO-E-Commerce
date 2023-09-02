@@ -19,7 +19,7 @@ const DealDay = () => {
       }, [])
     return (
         <div>
-            <div className='bg-gradient-to-r from-blue via-green  to-pink rounded-xl my-10'>
+            <div className='bg-gradient-to-r from-blue via-green  to-pink shadow-lg shadow-pink rounded-xl my-10'>
             <div className='flex justify-between items-center px-7'>
             <img className='inline w-28' src={img1} alt="" />
             <img className='inline w-28' src={img2} alt="" />

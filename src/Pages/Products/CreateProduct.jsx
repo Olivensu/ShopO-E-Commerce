@@ -103,7 +103,7 @@ const CreateProduct = () => {
                 {categories.map((category, index) => (
                   <option
                     key={category._id}
-                    value={category.name}
+                    value={category.slug}
                     className="bg-white text-gray-800 text-lg"
                   >
                     {category.name}
