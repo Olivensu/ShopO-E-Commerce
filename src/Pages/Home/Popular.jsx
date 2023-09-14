@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Popular = () => {
     return (
-            <div className='shadow-xl shadow-yellow my-10 p-5'>
+            <div className='shadow-xl shadow-yellow my-10 '>
               <div className='flex justify-between items-center px-5 my-5'>
                 <p className='flex justify-start items-center text-xl'><WhatshotIcon
                       style={{ fontSize: "2.5rem", color: "tomato" }}

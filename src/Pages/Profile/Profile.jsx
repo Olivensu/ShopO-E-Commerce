@@ -41,7 +41,7 @@ const Profile = () => {
         return <Loading></Loading>
       }
 // console.log(userinfo);
-      const {name, email,phone,address, image, isSeller} = userinfo;
+      const {name, email,phone,address, image, isSeller,isAdmin} = userinfo;
       const handleShopDetails = slug =>{
         navigate(`/shop/${slug}`)
         // console.log(slug);
@@ -49,10 +49,10 @@ const Profile = () => {
     return (
         <div>
             <div className="text-black font-bold text-start mx-10">
-                <Link><p className="bg-gray-light inline-block p-3 rounded-xl m-3"><IconButton color="primary" sx={{ p: "" }} aria-label="directions">
+                {isSeller || isAdmin?<Link><p className="bg-gray-light inline-block p-3 rounded-xl m-3"><IconButton color="primary" sx={{ p: "" }} aria-label="directions">
               <DashboardIcon />
-            </IconButton> DashBoard</p></Link>
-                <Link><p className="bg-gray-light inline-block p-3 rounded-xl m-3"><IconButton color="primary" sx={{ p: "" }} aria-label="directions">
+            </IconButton> DashBoard</p></Link> :''}
+                {/* <Link><p className="bg-gray-light inline-block p-3 rounded-xl m-3"><IconButton color="primary" sx={{ p: "" }} aria-label="directions">
               <PersonIcon />
             </IconButton> Personal Information</p></Link>
                 <Link><p className="bg-gray-light inline-block p-3 rounded-xl m-3"><IconButton color="primary" sx={{ p: "" }} aria-label="directions">
@@ -69,7 +69,7 @@ const Profile = () => {
             </IconButton> Reviews</p></Link>
                 <Link><p className="bg-gray-light inline-block p-3 rounded-xl m-3"><IconButton color="primary" sx={{ p: "" }} aria-label="directions">
               <PinIcon />
-            </IconButton> Change Password</p></Link>
+            </IconButton> Change Password</p></Link> */}
                 <Link to='/login'><p onClick={logout} className="bg-gray-light inline-block p-3 rounded-xl m-3"><IconButton color="primary" sx={{ p: "" }} aria-label="directions">
               <LogoutIcon />
             </IconButton> Log Out</p></Link>
@@ -87,7 +87,7 @@ const Profile = () => {
             }
             <div className="grid md:grid-cols-2 grid-cols-1">
                 {
-                    userShop.map(data=> <div className="flex justify-start items-center w-96 p-2 rounded-2xl border-x-red border-y-orange m-auto border-2 shadow-lg shadow-blue my-5" key={data._id}>
+                    userShop?.map(data=> <div className="flex justify-start items-center w-96 p-2 rounded-2xl border-x-red border-y-orange m-auto border-2 shadow-lg shadow-blue my-5" key={data._id}>
                         <img className="w-32" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${data.image}`} alt="Image Not Found" />
                         <div className="text-start">
                             <p onClick={()=>handleShopDetails(data.slug)} className="text-xl font-bold hover:text-blue cursor-pointer">{data.name}</p>

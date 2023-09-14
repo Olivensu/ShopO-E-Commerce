@@ -1,10 +1,10 @@
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {  useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -17,10 +17,17 @@ const Login = () => {
     loading,
     errors,
   ] = useSignInWithEmailAndPassword(auth);
-  const history = useNavigate();
-  if (user) {
-    history('/')
-  }
+  const navigate = useNavigate();
+    const location = useLocation();
+    // console.log(location.state?.from?.pathname);
+
+    const from =location.state?.from?.pathname ||  "/"; 
+    useEffect(()=>{
+      if(user){
+        // console.log(user);
+        navigate(from, {replace: true})
+      }
+    },[from, navigate,user])
   if (loading) {
     return <p>Loading...</p>;
   }

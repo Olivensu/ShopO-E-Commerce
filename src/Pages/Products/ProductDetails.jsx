@@ -43,10 +43,11 @@ const ProductDetails = () => {
     // }
 
     const handleAddToCart = ()=>{
-        cart;
-        if(!user.email){
-            navigate('/login')
+        
+        if(!user){
+            return navigate('/login')
         }
+        cart;
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/cart`, {product:product,quantity:quantity, email:user.email})
         .then(res=>{
             console.log(res);
@@ -56,9 +57,11 @@ const ProductDetails = () => {
             console.log(err)
             toast.error("Add to Cart Failed!")
           })
-
-        
     }
+
+    const handleNavigate = (id, quantity) => {
+      navigate(`/product/checkout/${id}/${quantity}`);
+    };
     return (
       <div>
         <div className="grid grid-cols-1 md:grid-cols-2 text-start items-center">
@@ -82,7 +85,7 @@ const ProductDetails = () => {
             <div className="flex items-center py-2 font-bold">
               Quantity : 
               <button onClick={()=>setQuantity(quantity<2?1:quantity-1)} className="btn btn-sm btn-secondary text-white font-bold text-xl mx-5">-</button>
-              <p className="border-2 px-2 rounded-lg">{quantity>product.quantity?product.quantity:quantity}</p>
+              <p className="border-2 px-2 rounded-lg">{quantity>product.quantity?setQuantity(product.quantity):quantity}</p>
               <button onClick={()=>setQuantity(quantity>product.quantity?product.quantity:quantity+1)}  className="btn btn-sm btn-secondary text-white font-bold text-xl mx-5">+</button>
             </div>
             <p className='bg-blue text-start inline-block px-1 rounded-lg bg-opacity-50 mt-2 tooltip'  data-tip="Cash On Delivery">COD</p>
@@ -91,7 +94,11 @@ const ProductDetails = () => {
               <br />
               {product.description}
             </p>
-            <button onClick={()=>handleAddToCart()} className="btn btn-primary text-white">Add To Cart</button>
+            {
+              product.quantity===0?<p className="my-5 font-bold text-red">Not Available At This Time</p>:
+              <div><button onClick={()=>handleAddToCart()} className="btn btn-primary text-white">Add To Cart</button></div>
+            }
+            {/* <button onClick={()=>handleAddToCart()} className="btn btn-primary text-white">Add To Cart</button> */}
           </div>
         </div>
         <div className="text-start w-11/12 m-auto space-y-5 my-5 shadow-xl p-3">

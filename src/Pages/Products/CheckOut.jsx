@@ -1,13 +1,14 @@
 // import React from 'react';
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import auth from "../../../firebase.init";
 import Loading from "../Shared/Loading";
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import AddressBook from "../Profile/AddressBook";
 
 const CheckOut = () => {
     const [user,loading]= useAuthState(auth);
@@ -15,6 +16,8 @@ const CheckOut = () => {
     const [userinfo, setUserinfo] = useState([]);
     const [cartItem,setCartItem]= useState([])
     const navigate = useNavigate()
+    const [selectedAddress, setSelectedAddress] = useState(null);
+    // console.log(selectedAddress)
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_BACKEND_URL}/api/users/${user?.email}`)
@@ -33,7 +36,7 @@ const CheckOut = () => {
     }
 
     const decodedPropArray = JSON.parse(decodeURIComponent(propArray));
-
+    // console.log(decodedPropArray);
     const checkoutItems = cartItem.filter(item=>decodedPropArray.includes(item._id))
 
     const totalPrice = checkoutItems.reduce((total, item) => {
@@ -42,14 +45,17 @@ const CheckOut = () => {
     const totalShipping = checkoutItems.reduce((total, item) => {
         return total + item.cartItem.shipping;
       }, 0);
-    console.log(checkoutItems.length);
-    console.log(totalShipping);
+    // console.log(checkoutItems.length);
+    // console.log(totalShipping);
 
     const handleCheckOut = ()=>{
         if(!user.email){
             navigate('/login')
         }
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/checkout`, {order:checkoutItems, email:user.email})
+        if(!selectedAddress){
+          return alert('Please select a address')
+        }
+        axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/order/checkout`, {order:checkoutItems, email:user.email, name:selectedAddress.name, phone:selectedAddress.phone, address:selectedAddress.address})
         .then(res=>{
             console.log(res);
             toast.success("CheckOut successfully")
@@ -63,29 +69,61 @@ const CheckOut = () => {
         
     }
 
+    const handleAddressChange = (id) => {
+      const selectedAddressId = id;
+      const address = userinfo?.newAddress?.find((addr) => addr._id === selectedAddressId);
+  
+      // Update the selected address state
+      setSelectedAddress(address);
+      console.log(id);
+    };
+
     return (
         <div>
             <p className="text-green font-bold text-2xl my-5">Check Out</p>
-            <div className="text-start my-5 shadow-md w-11/12 m-auto p-3 shadow-orange rounded-xl">
+            {/* <div className="text-start my-5 shadow-md w-11/12 m-auto p-3 shadow-orange rounded-xl">
                 <p>Deliver to: {userinfo.name}</p>
                 <p>Phone: {userinfo.phone}</p>
                 <p>Email: {userinfo.email}</p>
                 <p>Address: {userinfo.address}</p>
+            </div> */}
+            <div>
+            <p className="text-lg font-bold text-start w-11/12 m-auto mt-5">Select Address</p>
+            <div className="grid grid-cols-2 my-5">
+                {
+                    userinfo?.newAddress?.map((address)=>(<div className="space-y-2 text-start w-48 p-2 rounded-2xl border-x-red border-y-orange m-auto  bg-white border-2 my-5" key={address._id}>
+                        <input
+              type="radio"
+              name="shippingAddress"
+              className="radio radio-accent"
+              value={address._id}
+              onChange={()=>handleAddressChange(address._id)}
+            />
+                        <p className="font-bold">Name: {address.name}</p>
+                        <p className="font-bold">Phone: {address.phone}</p>
+                        <p className="font-bold">Address: {address.address}</p>
+                    </div>))
+                }
             </div>
-            <div className="text-start my-5 shadow-md w-11/12 m-auto p-3 shadow-orange rounded-xl">
+            <Link to='/create-address' className="text-orange font-bold text-xl"><p className="my-5">Add New Address</p></Link>
+            </div>
+            <div className="text-start my-5 w-11/12 m-auto">
             {checkoutItems?.map((item, index) => (
-            <div className="flex justify-around items-center my-5 bg-base-200 p-3 shadow-lg shadow-purple rounded-xl" key={item._id}>
+            <div className="my-5 bg-base-200 p-2  shadow-lg shadow-purple rounded-xl" key={item._id}>
                 
-              <div className="flex text-start">
-                <img className="w-20 mx-5" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${
+              <div className="flex items-center  text-start">
+                <div>
+                <img className="w-20 mx-3" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${
               item.cartItem.image
             }`} alt="" />
-              <div className="">
-              <p className="font-bold text-xl">{item.cartItem.name}</p>
+                </div>
+              <div className="ml-1">
+              <p className="font-bold text-lg">{item.cartItem.name}</p>
               <p className="font-bold ">{item.cartItem.shop}</p>
               <p className="line-through">৳ {item.cartItem.price}</p>
               <p className="font-bold ">৳ {item.cartItem.discountPrice}</p>
               <p className=" text-red">Only {item.cartItem.quantity}  Item left</p>
+              <p className="border-2 inline-block px-2 rounded-lg">Quantity {item.quantity}</p>
               </div>
               </div>
               <div>
@@ -95,7 +133,7 @@ const CheckOut = () => {
               <p className="border-2 px-2 rounded-lg">{item.quantity}</p>
               
               <button onClick={()=>handleQuantityChange(item._id, 1)}  className="btn btn-sm btn-secondary text-white font-bold text-xl mx-5">+</button> */}
-              <p className="border-2 px-2 rounded-lg mb-5">Quantity {item.quantity}</p>
+              
               {/* <div className="inline-block cursor-pointer" onClick={()=>handleDeleteItem(item._id)}>
               <DeleteIcon
                           color="warning"

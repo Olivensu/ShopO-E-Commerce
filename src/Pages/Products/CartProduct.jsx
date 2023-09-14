@@ -15,7 +15,8 @@ const CartProduct = () => {
     // const [quantity,setQuantity]= useState(0)
     const [selectedItems, setSelectedItems] = useState([]);
     const [updatedItems, setUpdatedItems] = useState(cartItem);
-    // console.log(user?.email);
+    const history = useNavigate();
+    console.log(selectedItems);
     useEffect(()=>{
         if(user){
             axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/order/cart/${user.email}`)
@@ -25,9 +26,9 @@ const CartProduct = () => {
                 setUpdatedItems(res.data.payload)
             })
         }
-    },[])
+    },[user])
     if(loading){
-        <Loading></Loading>
+        return <Loading></Loading>
     }
     // console.log(quantity);
     const handleCheckboxChange = (itemId) => {
@@ -41,16 +42,16 @@ const CartProduct = () => {
         
       };
 
-      const handleQuantityChange = (itemId, changeAmount) => {
-        setUpdatedItems(prevItems =>
-          prevItems.map(item =>
-            item._id === itemId
-              ? { ...item, quantity: (item.quantity<2?1:item.quantity + changeAmount) }
-              : item
-          )
-        );
-      };
-      const history = useNavigate();
+      // const handleQuantityChange = (itemId, changeAmount) => {
+      //   setUpdatedItems(prevItems =>
+      //     prevItems.map(item =>
+      //       item._id === itemId
+      //         ? { ...item, quantity: (item.quantity<2?1:item.quantity + changeAmount) }
+      //         : item
+      //     )
+      //   );
+      // };
+      
 
   const handleNavigate = (propArray) => {
     const encodedPropArray = encodeURIComponent(JSON.stringify(propArray));
@@ -102,15 +103,17 @@ const CartProduct = () => {
             onChange={() => handleCheckboxChange(item._id)}
           />
               <div className="flex text-start">
+                <div>
                 <img className="w-20 mx-5" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${
               item.cartItem.image
             }`} alt="" />
+                </div>
               <div className="">
-              <p className="font-bold text-xl">{item.cartItem.name}</p>
-              <p className="font-bold ">{item.cartItem.shop}</p>
-              <p className="line-through">৳ {item.cartItem.price}</p>
-              <p className="font-bold ">৳ {item.cartItem.discountPrice}</p>
-              <p className=" text-red">Only {item.cartItem.quantity}  Item left</p>
+              <p className="font-bold">{item.cartItem.name.slice(0,40)}...</p>
+              <p className=" ">{item.cartItem.shop}</p>
+              <p className="text-sm line-through">৳ {item.cartItem.price}</p>
+              <p className="text-sm font-bold ">৳ {item.cartItem.discountPrice}</p>
+              {/* <p className=" text-red">Only {item.cartItem.quantity}  Item left</p> */}
               </div>
               </div>
               <div>

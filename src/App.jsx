@@ -25,6 +25,13 @@ import CheckOut from './Pages/Products/CheckOut';
 import Orders from './Pages/Orders/Orders';
 import Products from './Pages/Products/Products';
 import TotalProducts from './Pages/Products/TotalProducts';
+import CategoriesProduct from './Pages/Categories/CategoriesProduct';
+import AddressBook from './Pages/Profile/AddressBook';
+import CreateAddress from './Pages/Profile/CreateAddress';
+import ProductCheckOut from './Pages/Products/ProductCheckOut';
+import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import ReturnRefund from './Pages/About/ReturnRefund';
+import TermsConditions from './Pages/About/TermsConditions';
 
 
 function App() {
@@ -48,19 +55,26 @@ function App() {
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/register" element={<Register></Register>}></Route>
           <Route path="/login" element={<Login></Login>}></Route>
-          <Route path="/profile" element={<Profile></Profile>}></Route>
+          <Route path="/profile" element={<PrivateRoute><Profile></Profile></PrivateRoute>}></Route>
           <Route path="/categories" element={<Categories></Categories>}></Route>
-          <Route path="/create-categories" element={<CreateCategories></CreateCategories>}></Route>
-          <Route path="/create-shop" element={<CreateShop></CreateShop>}></Route>
+          <Route path="/create-categories" element={<PrivateRoute><CreateCategories></CreateCategories></PrivateRoute>}></Route>
+          <Route path="/create-shop" element={<PrivateRoute><CreateShop></CreateShop></PrivateRoute>}></Route>
           <Route path='/shop/:slug' element={<ShopDetails></ShopDetails>}></Route>
           <Route path='/products' element={<TotalProducts></TotalProducts>}></Route>
           <Route path='/shop' element={<TotalShop></TotalShop>}></Route>
-          <Route path='/create-product/:shopSlug' element={<CreateProduct></CreateProduct>}></Route>
+          <Route path='/create-product/:shopSlug' element={<PrivateRoute><CreateProduct></CreateProduct></PrivateRoute>}></Route>
           <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
-          <Route path='/orders' element={<Orders></Orders>}></Route>
-          <Route path='/cart' element={<CartProduct></CartProduct>}></Route>
-          <Route path='/checkout/:propArray' element={<CheckOut></CheckOut>}></Route>
+          <Route path='/orders' element={<PrivateRoute><Orders></Orders></PrivateRoute>}></Route>
+          <Route path='/cart' element={<PrivateRoute><CartProduct></CartProduct></PrivateRoute>}></Route>
+          <Route path='/address-book' element={<PrivateRoute><AddressBook></AddressBook></PrivateRoute>}></Route>
+          <Route path='/create-address' element={<PrivateRoute><CreateAddress></CreateAddress></PrivateRoute>}></Route>
+          <Route path='/checkout/:propArray' element={<PrivateRoute><CheckOut></CheckOut></PrivateRoute>}></Route>
+          {/* <Route path='/product/checkout/:productId/:quantity' element={<ProductCheckOut></ProductCheckOut>}></Route> */}
+          <Route path='/categories/:category' element={<CategoriesProduct></CategoriesProduct>}></Route>
+          <Route path='/terms-conditions' element={<TermsConditions></TermsConditions>}></Route>
+          <Route path='/return-refund' element={<ReturnRefund></ReturnRefund>}></Route>
         </Routes>
+        
         <Footer></Footer>
         <ToastContainer />
       </div>

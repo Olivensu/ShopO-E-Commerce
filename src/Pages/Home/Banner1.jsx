@@ -20,7 +20,7 @@ const Banner1 = () => {
         </div>
         <div>
             <p className='text-start text-xl my-5'>Upcoming Campaigns</p>
-        <div className='grid grid-cols-2 lg:grid-cols-1 gap-10'>
+        <div className='grid grid-cols-1 lg:grid-cols-1 gap-10'>
             <div>
                 <FashionNign></FashionNign>
             </div>

@@ -6,9 +6,12 @@ import { useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../Shared/Loading";
 import { Slider } from "@mui/material";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../../firebase.init";
 
 const ShopDetails = () => {
     const { slug } = useParams();
+    const [user] = useAuthState(auth);
     // console.log(slug);
     const [shop, setShop] = useState([]);
     const [products, setProducts] = useState([]);
@@ -28,7 +31,7 @@ const ShopDetails = () => {
     },[])
     const shopName = shop.slug;
 
-    if(!products){
+    if(!products && !user){
         return <Loading></Loading>
     }
     const productDetails =(id)=>{
@@ -67,11 +70,13 @@ const ShopDetails = () => {
           ) : (
             ""
           )}
-          <Link to={`/create-product/${shopName}`}>
+          {
+            user?.email===shop?.email?<Link to={`/create-product/${shopName}`}>
             <span className="text-xl text-orange font-bold inline-block text-end my-5">
               + Add a Product
             </span>
-          </Link>
+          </Link>:''
+          }
           <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
             {products.map((data) => (
               <div

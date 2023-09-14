@@ -13,6 +13,7 @@ const Register = () => {
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState(0);
   const [image, setImage] = useState('');
+  const [showImage, setShowImage] = useState('');
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [
@@ -26,9 +27,7 @@ const Register = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-  if (user) {
-    history('/')
-  }
+  
   const handleSubmit = (e)=>{
     e.preventDefault();
     if(!name || !address || !email || !password || !phone || !image){
@@ -52,6 +51,9 @@ const Register = () => {
     .then(res => {
       console.log(res);
       toast.success("Registration Successfully!")
+      if (user) {
+        history('/')
+      }
     })
     .catch(err => {
       console.log(err)
@@ -61,6 +63,21 @@ const Register = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      setShowImage(reader.result);
+      console.log(showImage);
+    }
+  }
+  const handleChangeImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    previewFile(file);
+
+  }
   return (
     <div>
         <div className='max-w-md m-auto shadow-2xl my-10 py-10 border-2 border-l-yellow border-r-blue border-t-pink border-b-orange rounded-3xl'>
@@ -121,11 +138,14 @@ const Register = () => {
           onChange={(e)=> setImage(e.target.files[0])}
         />
         </div> */}
+        <div>
         <input label="image"
           type="file"
           required
           className="file-input file-input-bordered file-input-accent w-4/5 my-3"
           onChange={(e)=> setImage(e.target.files[0])} name="" id="" />
+          <img className='m-auto w-20' src={showImage} alt="" />
+        </div>
         <div className='flex m-auto w-4/5'>
         <TextField
           label="password"

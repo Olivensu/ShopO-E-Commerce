@@ -5,6 +5,7 @@ import FlashSale from '../CountDown/FlashSale'
 import DealDay from '../Products/DealDay'
 import Trending from './Trainding'
 import Popular from './Popular'
+import RankedShops from './RankedShops'
 // import { useAuthState } from 'react-firebase-hooks/auth';
 // import auth from '../../../firebase.init';
 // import { useNavigate } from 'react-router-dom';
@@ -29,7 +30,8 @@ const Home = () => {
         <FlashSale></FlashSale>
         <Trending></Trending>
         <Popular></Popular>
-        <Brand></Brand>
+        <RankedShops></RankedShops>
+        {/* <Brand></Brand> */}
         </div>
     </div>
   )

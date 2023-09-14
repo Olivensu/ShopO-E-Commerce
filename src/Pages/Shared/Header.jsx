@@ -282,115 +282,115 @@ const Header = () => {
       <div className='mt-5'></div>
       <Divider />
       <ul className=" ml-[-9px] w-56 mt-2 py-3 bg-white  z-50 cursor-pointer">
-                    <li className = 'py-3 my-1 ml-6'>
-                      <a className=''>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link  to={`/categories/mobile-and-laptops`}>
                         {" "}
                         <BookOnlineIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></BookOnlineIcon>{" "}
                         Mobile & Laptops
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/gaming-entertainment`}>
                         {" "}
                         <SportsEsportsIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></SportsEsportsIcon>{" "}
                         Gaming Entertainment
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/image-and-video`}>
                         {" "}
                         <CameraRollIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></CameraRollIcon>{" "}
                         Image & Video
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/vehicles`}>
                         {" "}
                         <BikeScooterIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></BikeScooterIcon>{" "}
                         Vehicles
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/furnitures`}>
                         {" "}
                         <BedroomParentIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></BedroomParentIcon>{" "}
                         Furnitures
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/sport`}>
                         {" "}
                         <SportsIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></SportsIcon>{" "}
                         Sport
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/food-and-drinks`}>
                         {" "}
                         <FastfoodIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></FastfoodIcon>{" "}
                         Food & Drinks
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/fashion-accessories`}>
                         {" "}
                         <StyleIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></StyleIcon>{" "}
                         Fashion Accessories
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/toilet-and-sanitation`}>
                         {" "}
                         <SanitizerIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></SanitizerIcon>{" "}
                         Toilet & Sanitation
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/makeup-corner`}>
                         {" "}
                         <Face4Icon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></Face4Icon>{" "}
                         Makeup Corner
-                      </a>
+                      </Link>
                     </li>
-                    <li className = 'py-3 my-1 ml-6 '>
-                      <a>
+                    <li  className = 'py-3 my-1 ml-6 '>
+                      <Link to={`/categories/baby-items`}>
                         {" "}
                         <ChildFriendlyIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></ChildFriendlyIcon>{" "}
                         Baby Items
-                      </a>
+                      </Link>
                     </li>
                   </ul>
     </Box>
@@ -442,7 +442,7 @@ const Header = () => {
       </div>
       <hr /> */}
 
-      <div className="flex justify-between items-center max-w-screen-xl mx-auto">
+      <div className="flex justify-between items-center max-w-screen-xl  lg:mt-0 mx-auto my-2 md:my-0">
         <Link to="/">
           <img className="w-24 md:w-28 lg:w-36 ml-3 " src={second} alt="" />
         </Link>
@@ -515,9 +515,7 @@ const Header = () => {
                           {user?.email}
                         </p>
                       </li>
-                      <li>
-                        <a>My Orders</a>
-                      </li>
+                      
                       <li className="mt-2">
                         <Link to="/profile">Profile</Link>
                       </li>
@@ -569,7 +567,7 @@ const Header = () => {
           )}
         </div>
       </div>
-      <div className="bg-yellow pt-2 mx-auto ">
+      <div className="bg-yellow pt-2 mx-auto  lg:mt-0">
         <div className="mx-2 md:mx-10">
           <div className="max-w-screen-xl mx-auto flex justify-between items-center">
             <div className="inline lg:hidden">
@@ -599,124 +597,124 @@ const Header = () => {
                   </summary>
                   <ul className="absolute ml-[-9px] shadow-orange shadow-2xl w-56 mt-2 py-3 bg-white  z-50">
                     <li>
-                      <a>
+                      <Link  to={`/categories/mobile-and-laptops`}>
                         {" "}
                         <BookOnlineIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></BookOnlineIcon>{" "}
                         Mobile & Laptops
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/gaming-entertainment`}>
                         {" "}
                         <SportsEsportsIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></SportsEsportsIcon>{" "}
                         Gaming Entertainment
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/image-and-video`}>
                         {" "}
                         <CameraRollIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></CameraRollIcon>{" "}
                         Image & Video
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/vehicles`}>
                         {" "}
                         <BikeScooterIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></BikeScooterIcon>{" "}
                         Vehicles
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/furnitures`}>
                         {" "}
                         <BedroomParentIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></BedroomParentIcon>{" "}
                         Furnitures
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/sport`}>
                         {" "}
                         <SportsIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></SportsIcon>{" "}
                         Sport
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/food-and-drinks`}>
                         {" "}
                         <FastfoodIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></FastfoodIcon>{" "}
                         Food & Drinks
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/fashion-accessories`}>
                         {" "}
                         <StyleIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></StyleIcon>{" "}
                         Fashion Accessories
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/toilet-and-sanitation`}>
                         {" "}
                         <SanitizerIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></SanitizerIcon>{" "}
                         Toilet & Sanitation
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/makeup-corner`}>
                         {" "}
                         <Face4Icon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></Face4Icon>{" "}
                         Makeup Corner
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a>
+                      <Link to={`/categories/baby-items`}>
                         {" "}
                         <ChildFriendlyIcon
                           color="warning"
                           style={{ fontSize: "1.5rem" }}
                         ></ChildFriendlyIcon>{" "}
                         Baby Items
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </details>
               </li>
             </ul>
-            <div className="flex lg:flex inline lg:hidden">
+            <div className="flex w-full justify-between item-center lg:hidden">
               <ul className="menu">
                 <Link to="/shop">
                   <li>
-                    <p>
+                    <p className='p-0'>
                       <StorefrontIcon
                         color="black"
                         style={{ fontSize: "1.5rem" }}
@@ -729,7 +727,7 @@ const Header = () => {
               <Link to="/categories">
                 <ul className="menu">
                   <li>
-                    <p>
+                    <p className='p-0'>
                       <LibraryBooksIcon
                         color="black"
                         style={{ fontSize: "1.5rem" }}
@@ -741,7 +739,7 @@ const Header = () => {
               </Link>
               <ul className="menu">
                 <Link to='/orders'><li>
-                  <p>
+                  <p className='p-0'>
                     <ShoppingCartIcon
                       color="black"
                       style={{ fontSize: "1.5rem" }}
@@ -803,7 +801,7 @@ const Header = () => {
                 </li></Link>
               </ul>
               <ul className="menu ml-3">
-                <li>
+                <Link to='/address-book'><li>
                   <p>
                     <LocalShippingIcon
                       color="black"
@@ -811,7 +809,7 @@ const Header = () => {
                     ></LocalShippingIcon>{" "}
                     Delivery Address
                   </p>
-                </li>
+                </li></Link>
               </ul>
             </div>
             {/* import LocalShippingIcon from '@mui/icons-material/LocalShipping'; */}

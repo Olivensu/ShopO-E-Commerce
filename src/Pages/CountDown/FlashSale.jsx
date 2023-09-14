@@ -34,7 +34,7 @@ const FlashSale = () => {
                 <img className='w-full rounded-xl' src={flash} alt="" />
             </div>
             {/* <h2>Flash Sale Ending In:</h2> */}
-            <FlashSaleCountdown targetDate={targetDate} />
+            {/* <FlashSaleCountdown targetDate={targetDate} /> */}
           </div>
         )}
         <div className='flex justify-between items-center px-5 my-5'>

@@ -23,10 +23,10 @@ const Products = () => {
       }
     return (
         <div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
                 {products.map((data) => (
                   <div
-                    className="w-48 p-2 rounded-2xl border-x-red border-y-orange m-auto  bg-white border-2 my-5"
+                    className="w-40 p-2 rounded-2xl border-x-red border-y-orange m-auto  bg-white border-2 my-5"
                     key={data._id}
                   >
                     <img
@@ -55,7 +55,7 @@ const Products = () => {
                       </p>
                     </div>
                   </div>
-                )).slice(0,5)}
+                )).slice(0,6)}
               </div>
         </div>
     );

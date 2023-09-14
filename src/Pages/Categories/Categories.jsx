@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
     const [categories, setCategories] =  useState([]);
@@ -16,12 +17,14 @@ const Categories = () => {
             console.log(err);
           });
     },[])
+
+    
     return (
         <div className="w-11/12 m-auto my-12">
             <p className="text-start text-2xl font-bold">Categories</p>
             <div className="text-start w-full mt-5">
             {
-                categories.map(data=><p className="inline-block border-2 p-3 m-2 rounded-xl hover:underline cursor-pointer" key={data._id}>{data.name}</p>)
+                categories.map(data=><Link to={`/categories/${data.slug}`}  key={data._id}><p className="inline-block border-2 p-3 m-2 rounded-xl hover:underline cursor-pointer">{data.name}</p></Link>)
             }
             </div>
         </div>
