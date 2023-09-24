@@ -17,7 +17,7 @@ const TotalShop = () => {
       const handleShopDetails = slug =>{
         navigate(`/shop/${slug}`)
         // console.log(slug);
-    }
+        }
     return (
         <div>
             <p className="mt-5 text-2xl text-start m-auto w-11/12">Shops</p>

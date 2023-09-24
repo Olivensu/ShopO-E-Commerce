@@ -32,6 +32,13 @@ import ProductCheckOut from './Pages/Products/ProductCheckOut';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 import ReturnRefund from './Pages/About/ReturnRefund';
 import TermsConditions from './Pages/About/TermsConditions';
+import Dashboard from './Pages/DashBoard/Dashboard';
+import UserTable from './Pages/DashBoard/UserTable';
+import SideBar from './Pages/DashBoard/SideBar';
+import ShopTable from './Pages/DashBoard/ShopTable';
+import ProductTable from './Pages/DashBoard/ProductTable';
+import CategoryTable from './Pages/DashBoard/CategoryTable';
+import DashCreateCategory from './Pages/DashBoard/DashCreateCategory';
 
 
 function App() {
@@ -48,7 +55,7 @@ function App() {
 
   return (
     <>
-    <ScrollToTop />
+      <ScrollToTop />
       <div className="m-auto text-center ">
         <Header></Header>
         <Routes>
@@ -73,9 +80,19 @@ function App() {
           <Route path='/categories/:category' element={<CategoriesProduct></CategoriesProduct>}></Route>
           <Route path='/terms-conditions' element={<TermsConditions></TermsConditions>}></Route>
           <Route path='/return-refund' element={<ReturnRefund></ReturnRefund>}></Route>
+          
+        </Routes>
+        <Routes>
+              <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
+              <Route path='/dashboard/users' element={<UserTable></UserTable>}></Route>
+              <Route path='/dashboard/shop' element={<ShopTable></ShopTable>}></Route>
+              <Route path='/dashboard/products' element={<ProductTable></ProductTable>}></Route>
+              <Route path='/dashboard/categories' element={<CategoryTable></CategoryTable>}></Route>
+              <Route path='/dashboard/create-categories' element={<DashCreateCategory></DashCreateCategory>}></Route>
         </Routes>
         
         <Footer></Footer>
+        
         <ToastContainer />
       </div>
     </>

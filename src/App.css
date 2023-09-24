@@ -1,5 +1,30 @@
-/* 
+/*-----------------------scrollbar--------------------- */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 5px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 239, 16);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(16, 255, 16); 
+}
+ 
+/*
 #root {
   max-width: 1280px;
   margin: 0 auto;

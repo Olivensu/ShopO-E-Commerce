@@ -61,12 +61,12 @@ const CreateProduct = () => {
           axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/product/create-product`, formData)
           .then(res => {
             console.log(res);
-            toast.success("Shop Created Successfully!")
+            toast.success("Product Created Successfully!")
             setName(''); setCategory(''); setPrice(''); setDiscountPrice(''); setShipping(''); setQuantity('');  setDescription(''); setImage('');
           })
           .catch(err => {
             console.log(err)
-            toast.error("Shop Creation Failed!")
+            toast.error("Product Creation Failed!")
           })
       }
     //   console.log(categories);

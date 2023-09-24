@@ -27,7 +27,9 @@ const Register = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-  
+  if (user) {
+    history('/')  
+  }
   const handleSubmit = (e)=>{
     e.preventDefault();
     if(!name || !address || !email || !password || !phone || !image){
@@ -51,9 +53,7 @@ const Register = () => {
     .then(res => {
       console.log(res);
       toast.success("Registration Successfully!")
-      if (user) {
-        history('/')
-      }
+      
     })
     .catch(err => {
       console.log(err)

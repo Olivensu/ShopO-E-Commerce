@@ -19,6 +19,7 @@ const TotalProducts = () => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product/`)
       .then((res) => {
         setProducts(res.data.payload);
+        console.log(res.data.payload.length);
       });
 
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/category`)
@@ -64,6 +65,7 @@ const TotalProducts = () => {
   let filteredProducts = products.filter(filterProducts);
   const ITEMS_PER_PAGE = 8;
   const totalItems = filteredProducts.length;
+  console.log(totalItems);
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
   let startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
