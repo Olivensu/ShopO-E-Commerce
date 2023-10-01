@@ -87,15 +87,21 @@ const Profile = () => {
             }
             <div className="grid md:grid-cols-2 grid-cols-1">
                 {
-                    userShop?.map(data=> <div className="flex justify-start items-center w-96 p-2 rounded-2xl border-x-red border-y-orange m-auto border-2 shadow-lg shadow-blue my-5" key={data._id}>
-                        <img className="w-32" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${data.image}`} alt="Image Not Found" />
+                    userShop?.map(data=> <>
+                        {
+                          data.isShow?(
+                            <div className="flex justify-start items-center w-96 p-2 rounded-2xl border-x-red border-y-orange m-auto border-2 shadow-lg shadow-blue my-5" key={data._id}>
+                            <img className="w-32" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${data.image}`} alt="Image Not Found" />
                         <div className="text-start">
                             <p onClick={()=>handleShopDetails(data.slug)} className="text-xl font-bold hover:text-blue cursor-pointer">{data.name}</p>
                             <p className="py-1 font-bold">{data.email}</p>
                             <p>{data.phone}</p>
                             <p>{data.city}</p>
                         </div>
-                    </div>)
+                            </div>
+                          ):''
+                        }
+                    </>)
                 }
             </div>
         </div>

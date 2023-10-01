@@ -1,0 +1,35 @@
+.selsNotifications{
+   
+        .message{
+            display: flex;
+            background-color: #FFFAE1;
+            padding: 10px;
+            align-items: center;
+            border-left: 7px solid #9D8506;
+            margin: 20px 0px;
+            .msgTitle{
+                width: 100%;
+                color:#9D8506;
+                margin: 10px 20px;
+                .msgdesc{
+                    font-size: 16px;
+                }
+                
+
+                .title{
+                   
+                    color: #9D8506;
+                    font-size: 14px;
+                    font-weight: bolder;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    
+    
+                }
+
+            }
+
+           
+        }
+}

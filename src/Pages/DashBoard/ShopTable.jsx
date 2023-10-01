@@ -77,15 +77,64 @@ const ShopTable = () => {
             setName('');
             setCity('');
             setPhone();
+            setImage('');
             axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/shop`)
             .then(res=>{
                 setUserShop(res.data.payload)
             })
-            toast.success('Shop deleted successfully')
+            toast.success('Shop Edited successfully')
         })
         .catch(err => {
           console.log(err)
-          toast.error("Registration Failed!")
+          toast.error("Shop Edited Failed!")
+        })
+    }
+
+    const handleShow=(slug, show)=>{
+      axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/shop/${slug}`,{'isShow': !show})
+        .then(res=>{
+            console.log(res);
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/shop`)
+            .then(res=>{
+                setUserShop(res.data.payload)
+            })
+            toast.success('Shop Show successfully')
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error("Shop Edited Failed!")
+        })
+    }
+
+    const handleFlashSale=(slug, show)=>{
+      axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/shop/${slug}`,{'isFlashSale': !show})
+        .then(res=>{
+            console.log(res);
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/shop`)
+            .then(res=>{
+                setUserShop(res.data.payload)
+            })
+            toast.success('Shop FlashSale successfully')
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error("Shop Edited Failed!")
+        })
+    }
+
+    const handlePopular=(slug, show)=>{
+      axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/shop/${slug}`,{'isPopular': !show})
+        .then(res=>{
+            console.log(res);
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/shop`)
+            .then(res=>{
+                setUserShop(res.data.payload)
+            })
+            toast.success('Shop Popular successfully')
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error("Shop Edited Failed!")
         })
     }
     const deleteUsers=(slug)=>{
@@ -119,13 +168,19 @@ const ShopTable = () => {
                 <th>Address </th>
                 <th>Zip </th>
                 <th>Description </th>
+                <th>Show</th>
+                <th>FlashSale </th>
+                <th>Popular</th>
                 <th>Control </th>
               </tr>
             </thead>
             <tbody>
               {userShop?.map((data) => (
                 <tr key={data._id}>
-                  <th>
+                 {
+                  data.isShow?(
+                    <>
+                     <th>
                     <img
                       className="w-10"
                       src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${
@@ -145,7 +200,11 @@ const ShopTable = () => {
                   <th>{data.city}</th>
                   <th>{data.zip}</th>
                   <th>{data.description.slice(0, 20)}...</th>
-                  <th>
+                  <th>{data.isShow?<input onClick={()=>handleShow(data.slug, data.isShow)} type="checkbox" className="toggle toggle-success" checked />:<input type="checkbox"  onClick={()=>handleShow(data.slug, data.isShow)} className="toggle toggle-success"  />}</th>
+                  <th>{data.isFlashSale?<input onClick={()=>handleFlashSale(data.slug, data.isFlashSale)} type="checkbox" className="toggle toggle-success" checked />:<input type="checkbox"  onClick={()=>handleFlashSale(data.slug, data.isFlashSale)} className="toggle toggle-success"  />}</th>
+                  <th>{data.isPopular?<input onClick={()=>handlePopular(data.slug, data.isPopular)} type="checkbox" className="toggle toggle-success" checked />:<input type="checkbox"  onClick={()=>handlePopular(data.slug, data.isPopular)} className="toggle toggle-success"  />}</th>
+                  
+                  <th className=''>
                     <label onClick={()=>{
                       setSelectedData(data);
                       document.getElementById('my_modal_5').showModal()
@@ -274,6 +333,9 @@ const ShopTable = () => {
                       <DeleteIcon style={{ fontSize: "2rem" }} />
                     </IconButton>
                   </th>
+                    </>
+                  ):''
+                 }
                 </tr>
               ))}
             </tbody>

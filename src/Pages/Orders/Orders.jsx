@@ -34,7 +34,6 @@ const Orders = () => {
                 {
                     item?.order?.map((item,index)=>(
                         <div className="flex justify-around items-center mb-5" key={item._id}>
-                        
                       <div className="flex items-center text-start">
                         <img className="w-20 mx-5 h-20" src={`${import.meta.env.VITE_BACKEND_URL}/image/users/${
                       item.cartItem.image

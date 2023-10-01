@@ -8,6 +8,7 @@ import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantity
 // import useAuth from '../hooks/useAuth';
 import CategoryIcon from '@mui/icons-material/Category';
 import OpenInBrowserRoundedIcon from '@mui/icons-material/OpenInBrowserRounded';
+import EventIcon from '@mui/icons-material/Event';
 
 function SideBar(){
     const [active, setActive] = useState();
@@ -71,9 +72,11 @@ function SideBar(){
                   >
                     <StoreIcon style={{ fontSize: "2rem" }} />
                   </IconButton>,
-                    height: 40,
+                    height: 60,
                     links:[
+                        {name:'ApproveShop',link:'/dashboard/ApproveShop'},
                         {name:'Shops',link:'/dashboard/shop'},
+                        
                     ]
                 },
                 {
@@ -114,13 +117,30 @@ function SideBar(){
                   >
                     <OpenInBrowserRoundedIcon style={{ fontSize: "2rem" }} />
                   </IconButton>,
-                    height: 160,
+                    height: 220,
                     links:[
                         {name:'New Orders',link:'/dashboard/new-orders'},
                         {name:'Processing Orders',link:'/dashboard/processing-orders'},
-                        {name:'WarHouse Orders',link:'/dashboard/warHouse-orders'},
+                        {name:'WareHouse Orders',link:'/dashboard/warehouse-orders'},
                         {name:'Shipped Orders',link:'/dashboard/shipped-orders'},
+                        {name:'PickupPoint Orders',link:'/dashboard/pickup-point-orders'},
                         {name:'Complete Orders',link:'/dashboard/complete-orders'},
+                        {name:'Cancelled Orders',link:'/dashboard/cancelled-orders'},
+                    ]
+                },
+                {
+                    title:'Events',
+                    icon: <IconButton
+                    color="secondary"
+                    sx={{ p: "" }}
+                    aria-label="directions"
+                  >
+                    <EventIcon style={{ fontSize: "2rem" }} />
+                  </IconButton>,
+                    height: 60,
+                    links:[
+                        {name:'Slider',link:'/dashboard/slider'},
+                        {name:'Campaign',link:'/dashboard/campaign'},
                     ]
                 },
             ]);
@@ -179,7 +199,7 @@ function SideBar(){
                         return(
                             <div key={index} className="  transition-all duration-700 ease-in-out  w-full ">
                                 <div onClick={()=> toggleActive(index)} className="text-gray-dark text-xl cursor-pointer px-2 py-2 flex items-center gap-1"> {data.icon} <span>{data.title}</span></div>
-                                <div style={{height:`${(active === index)? `${data.height}px`: '0px'} `}} className="transition-all duration-700 ease-in-out overflow-hidden h-full pl-14  flex flex-col gap-2 bg-warning shadow-inner text-dark font-semibold relative">
+                                <div style={{height:`${(active === index)? `${data.height}px`: '0px'} `}} className="transition-all duration-700 ease-in-out overflow-hidden h-full pl-10  flex flex-col gap-2 bg-warning shadow-inner text-dark font-semibold relative">
                                     <div className=" absolute top-0 left-0 w-1 h-full bg-secondary rounded-tr-md rounded-br-md"></div>
                                     {
                                         data.links.map((data, index)=>{

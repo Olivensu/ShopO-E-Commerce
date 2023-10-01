@@ -87,13 +87,94 @@ const ProductTable = () => {
             .then(res=>{
               setUserProduct(res.data.payload)
             })
-            toast.success('Shop deleted successfully')
+            toast.success('Product Edited successfully')
         })
         .catch(err => {
           console.log(err)
-          toast.error("Registration Failed!")
+          toast.error("Product Edited Failed!")
         })
     }
+
+    const handleAvailable=(id, show)=>{
+      axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`,{'isAvailable': !show})
+        .then(res=>{
+            console.log(res);
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product`)
+            .then(res=>{
+              setUserProduct(res.data.payload)
+            })
+            toast.success('Product Available successfully')
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error("Product Edited Failed!")
+        })
+    }
+
+    const handleFlashSale=(id, show)=>{
+      axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`,{'isFlashSale': !show})
+        .then(res=>{
+            console.log(res);
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product`)
+            .then(res=>{
+              setUserProduct(res.data.payload)
+            })
+            toast.success('Product FlashSale successfully')
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error("Product Edited Failed!")
+        })
+    }
+
+    const handleTrending=(id, show)=>{
+      axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`,{'isTrending': !show})
+        .then(res=>{
+            console.log(res);
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product`)
+            .then(res=>{
+              setUserProduct(res.data.payload)
+            })
+            toast.success('Product Trending successfully')
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error("Product Edited Failed!")
+        })
+    }
+
+    const handleDealDay=(id, show)=>{
+      axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`,{'isDealDay': !show})
+        .then(res=>{
+            console.log(res);
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product`)
+            .then(res=>{
+              setUserProduct(res.data.payload)
+            })
+            toast.success('Product DealDay successfully')
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error("Product Edited Failed!")
+        })
+    }
+
+    const handlePopular=(id, show)=>{
+      axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`,{'isPopular': !show})
+        .then(res=>{
+            console.log(res);
+            axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product`)
+            .then(res=>{
+              setUserProduct(res.data.payload)
+            })
+            toast.success('Product Popular successfully')
+        })
+        .catch(err => {
+          console.log(err)
+          toast.error("Product Edited Failed!")
+        })
+    }
+
     const deleteUsers=(id)=>{
         axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/product/${id}`)
         .then(res=>{
@@ -128,6 +209,11 @@ const ProductTable = () => {
                         <th>Discount Price </th>
                         <th>Shipping </th>
                         <th>Quantity </th>
+                        <th>Available</th>
+                        <th>FlashSale </th>
+                        <th>Trending </th>
+                        <th>Deal Day </th>
+                        <th>Popular</th>
                         <th>Action </th>
                       </tr>
                     </thead>
@@ -141,6 +227,12 @@ const ProductTable = () => {
                                 <th>{data.discountPrice}</th>
                                 <th>{data.shipping}</th>
                                 <th>{data.quantity}</th>
+                                <th>{data.isAvailable?<input onClick={()=>handleAvailable(data._id, data.isAvailable)} type="checkbox" className="toggle toggle-success" checked />:<input type="checkbox"  onClick={()=>handleAvailable(data._id, data.isAvailable)} className="toggle toggle-success"  />}</th>
+                                <th>{data.isFlashSale?<input onClick={()=>handleFlashSale(data._id, data.isFlashSale)} type="checkbox" className="toggle toggle-success" checked />:<input type="checkbox"  onClick={()=>handleFlashSale(data._id, data.isFlashSale)} className="toggle toggle-success"  />}</th>
+                                <th>{data.isTrending?<input onClick={()=>handleTrending(data._id, data.isTrending)} type="checkbox" className="toggle toggle-success" checked />:<input type="checkbox"  onClick={()=>handleTrending(data._id, data.isTrending)} className="toggle toggle-success"  />}</th>
+                                <th>{data.isDealDay?<input onClick={()=>handleDealDay(data._id, data.isDealDay)} type="checkbox" className="toggle toggle-success" checked />:<input type="checkbox"  onClick={()=>handleDealDay(data._id, data.isDealDay)} className="toggle toggle-success"  />}</th>
+                                <th>{data.isPopular?<input onClick={()=>handlePopular(data._id, data.isPopular)} type="checkbox" className="toggle toggle-success" checked />:<input type="checkbox"  onClick={()=>handlePopular(data._id, data.isPopular)} className="toggle toggle-success"  />}</th>
+                  
                                 <th>
                                 <label onClick={()=>{
                       setSelectedData(data);

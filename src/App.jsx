@@ -39,6 +39,20 @@ import ShopTable from './Pages/DashBoard/ShopTable';
 import ProductTable from './Pages/DashBoard/ProductTable';
 import CategoryTable from './Pages/DashBoard/CategoryTable';
 import DashCreateCategory from './Pages/DashBoard/DashCreateCategory';
+import NewOrderTable from './Pages/DashBoard/NewOrderTable';
+import ProcessOrderTable from './Pages/DashBoard/ProcessOrderTable';
+import WareHouseTable from './Pages/DashBoard/WareHouseTable';
+import ShippedOrderTable from './Pages/DashBoard/ShippedOrderTable';
+import PickupPointTable from './Pages/DashBoard/PickupPointTable';
+import CompleteOrder from './Pages/DashBoard/CompleteOrder.jsx';
+import CancelledOrder from './Pages/DashBoard/CancelledOrder';
+import MessengerCustomerChat from 'react-messenger-customer-chat';
+import Invoice from './Pages/DashBoard/Invoice';
+import ApproveShopTable from './Pages/DashBoard/ApproveShopTable';
+import SliderDash from './Pages/DashBoard/SliderDash';
+import UploadSliderImg from './Pages/DashBoard/UploadSliderImg';
+import CampaignHistory from './Pages/DashBoard/CampaignHistory';
+import UploadCampaign from './Pages/DashBoard/UploadCampaign';
 
 
 function App() {
@@ -86,13 +100,29 @@ function App() {
               <Route path='/dashboard' element={<Dashboard></Dashboard>}></Route>
               <Route path='/dashboard/users' element={<UserTable></UserTable>}></Route>
               <Route path='/dashboard/shop' element={<ShopTable></ShopTable>}></Route>
+              <Route path='/dashboard/ApproveShop' element={<ApproveShopTable></ApproveShopTable>}></Route>
               <Route path='/dashboard/products' element={<ProductTable></ProductTable>}></Route>
               <Route path='/dashboard/categories' element={<CategoryTable></CategoryTable>}></Route>
               <Route path='/dashboard/create-categories' element={<DashCreateCategory></DashCreateCategory>}></Route>
+              <Route path='/dashboard/new-orders' element={<NewOrderTable></NewOrderTable>}></Route>
+              <Route path='/dashboard/processing-orders' element={<ProcessOrderTable></ProcessOrderTable>}></Route>
+              <Route path='/dashboard/warehouse-orders' element={<WareHouseTable></WareHouseTable>}></Route>
+              <Route path='/dashboard/shipped-orders' element={<ShippedOrderTable></ShippedOrderTable>}></Route>
+              <Route path='/dashboard/pickup-point-orders' element={<PickupPointTable></PickupPointTable>}></Route>
+              <Route path='/dashboard/complete-orders' element={<CompleteOrder></CompleteOrder>}></Route>
+              <Route path='/dashboard/cancelled-orders' element={<CancelledOrder></CancelledOrder>}></Route>
+              <Route path='/dashboard/invoice/:id' element={<Invoice></Invoice>}></Route>
+              <Route path='/dashboard/slider' element={<SliderDash></SliderDash>}></Route>
+              <Route path='/dashboard/slider-img' element={<UploadSliderImg></UploadSliderImg>}></Route>
+              <Route path='/dashboard/campaign' element={<CampaignHistory></CampaignHistory>}></Route>
+              <Route path='/dashboard/campaign-img' element={<UploadCampaign></UploadCampaign>}></Route>
         </Routes>
         
         <Footer></Footer>
-        
+        <MessengerCustomerChat
+    pageId="121253954413161" 
+    appId="1035703037435590"
+  />
         <ToastContainer />
       </div>
     </>

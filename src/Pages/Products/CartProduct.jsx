@@ -98,7 +98,7 @@ const CartProduct = () => {
           {updatedItems?.map((item, index) => (
             <div className="flex justify-around items-center my-7 bg-base-200 p-3 shadow-lg shadow-purple w-11/12 m-auto rounded-xl" key={item._id}>
                 <input
-            type="checkbox"
+            type="checkbox" 
             className="checkbox checkbox-primary" 
             onChange={() => handleCheckboxChange(item._id)}
           />

@@ -1,0 +1,85 @@
+.products {
+  flex: 2;
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 4.47);
+  padding: 20px;
+  border-radius: 7px;
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: grey;
+    cursor: pointer;;
+
+    .title {
+      font-size: 24px;
+      font-weight: 500;
+      color: #181818;
+      margin-bottom: 16px;
+    }
+  }
+
+  .bottom {
+    .btmcontainer {
+      margin: 7px 15px;
+    }
+
+    .btmBorder {
+      border-bottom: 2px solid #e3e8ef;
+    }
+    .btmInfo {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+
+      .btmTitle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .icons {
+          width: 60px;
+        }
+        .header {
+          margin: 5px 20px;
+           .id{
+           
+            &.sub{
+              color: #FF3030;
+               
+               
+            }
+
+          }
+          h1 {
+            font-size: 16px;
+            color: #181818;
+            font-weight: 500;
+          }
+          p {
+            font-size: 14px;
+            font-weight: 400;
+            color: #747474;
+          }
+        }
+      }
+
+      .details {
+        color: #FF3030;
+        font-size: 14px;
+        font-weight: 400;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .more {
+    margin-top: 17px;
+    margin-left: 17px;
+    color: #2d5bff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+}
