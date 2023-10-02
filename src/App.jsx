@@ -53,6 +53,9 @@ import SliderDash from './Pages/DashBoard/SliderDash';
 import UploadSliderImg from './Pages/DashBoard/UploadSliderImg';
 import CampaignHistory from './Pages/DashBoard/CampaignHistory';
 import UploadCampaign from './Pages/DashBoard/UploadCampaign';
+import Layout from './Pages/Shared/Layout';
+import FlashSaleTable from './Pages/DashBoard/FlashSaleTable';
+import UploadFlashSale from './Pages/DashBoard/UploadFlashSale';
 
 
 function App() {
@@ -71,29 +74,29 @@ function App() {
     <>
       <ScrollToTop />
       <div className="m-auto text-center ">
-        <Header></Header>
+        {/* <Header></Header> */}
         <Routes>
-          <Route path="/" element={<Home></Home>}></Route>
-          <Route path="/register" element={<Register></Register>}></Route>
-          <Route path="/login" element={<Login></Login>}></Route>
-          <Route path="/profile" element={<PrivateRoute><Profile></Profile></PrivateRoute>}></Route>
-          <Route path="/categories" element={<Categories></Categories>}></Route>
-          <Route path="/create-categories" element={<PrivateRoute><CreateCategories></CreateCategories></PrivateRoute>}></Route>
-          <Route path="/create-shop" element={<PrivateRoute><CreateShop></CreateShop></PrivateRoute>}></Route>
-          <Route path='/shop/:slug' element={<ShopDetails></ShopDetails>}></Route>
-          <Route path='/products' element={<TotalProducts></TotalProducts>}></Route>
-          <Route path='/shop' element={<TotalShop></TotalShop>}></Route>
-          <Route path='/create-product/:shopSlug' element={<PrivateRoute><CreateProduct></CreateProduct></PrivateRoute>}></Route>
-          <Route path='/product/:id' element={<ProductDetails></ProductDetails>}></Route>
-          <Route path='/orders' element={<PrivateRoute><Orders></Orders></PrivateRoute>}></Route>
-          <Route path='/cart' element={<PrivateRoute><CartProduct></CartProduct></PrivateRoute>}></Route>
-          <Route path='/address-book' element={<PrivateRoute><AddressBook></AddressBook></PrivateRoute>}></Route>
-          <Route path='/create-address' element={<PrivateRoute><CreateAddress></CreateAddress></PrivateRoute>}></Route>
-          <Route path='/checkout/:propArray' element={<PrivateRoute><CheckOut></CheckOut></PrivateRoute>}></Route>
+          <Route path="/" element={<Layout><Home></Home></Layout>}></Route>
+          <Route path="/register" element={<Layout><Register></Register></Layout>}></Route>
+          <Route path="/login" element={<Layout><Login></Login></Layout>}></Route>
+          <Route path="/profile" element={<Layout><PrivateRoute><Profile></Profile></PrivateRoute></Layout>}></Route>
+          <Route path="/categories" element={<Layout><Categories></Categories></Layout>}></Route>
+          <Route path="/create-categories" element={<Layout><PrivateRoute><CreateCategories></CreateCategories></PrivateRoute></Layout>}></Route>
+          <Route path="/create-shop" element={<Layout><PrivateRoute><CreateShop></CreateShop></PrivateRoute></Layout>}></Route>
+          <Route path='/shop/:slug' element={<Layout><ShopDetails></ShopDetails></Layout>}></Route>
+          <Route path='/products' element={<Layout><TotalProducts></TotalProducts></Layout>}></Route>
+          <Route path='/shop' element={<Layout><TotalShop></TotalShop></Layout>}></Route>
+          <Route path='/create-product/:shopSlug' element={<Layout><PrivateRoute><CreateProduct></CreateProduct></PrivateRoute></Layout>}></Route>
+          <Route path='/product/:id' element={<Layout><ProductDetails></ProductDetails></Layout>}></Route>
+          <Route path='/orders' element={<Layout><PrivateRoute><Orders></Orders></PrivateRoute></Layout>}></Route>
+          <Route path='/cart' element={<Layout><PrivateRoute><CartProduct></CartProduct></PrivateRoute></Layout>}></Route>
+          <Route path='/address-book' element={<Layout><PrivateRoute><AddressBook></AddressBook></PrivateRoute></Layout>}></Route>
+          <Route path='/create-address' element={<Layout><PrivateRoute><CreateAddress></CreateAddress></PrivateRoute></Layout>}></Route>
+          <Route path='/checkout/:propArray' element={<Layout><PrivateRoute><CheckOut></CheckOut></PrivateRoute></Layout>}></Route>
           {/* <Route path='/product/checkout/:productId/:quantity' element={<ProductCheckOut></ProductCheckOut>}></Route> */}
-          <Route path='/categories/:category' element={<CategoriesProduct></CategoriesProduct>}></Route>
-          <Route path='/terms-conditions' element={<TermsConditions></TermsConditions>}></Route>
-          <Route path='/return-refund' element={<ReturnRefund></ReturnRefund>}></Route>
+          <Route path='/categories/:category' element={<Layout><CategoriesProduct></CategoriesProduct></Layout>}></Route>
+          <Route path='/terms-conditions' element={<Layout><TermsConditions></TermsConditions></Layout>}></Route>
+          <Route path='/return-refund' element={<Layout><ReturnRefund></ReturnRefund></Layout>}></Route>
           
         </Routes>
         <Routes>
@@ -116,9 +119,11 @@ function App() {
               <Route path='/dashboard/slider-img' element={<UploadSliderImg></UploadSliderImg>}></Route>
               <Route path='/dashboard/campaign' element={<CampaignHistory></CampaignHistory>}></Route>
               <Route path='/dashboard/campaign-img' element={<UploadCampaign></UploadCampaign>}></Route>
+              <Route path='/dashboard/flashsale' element={<FlashSaleTable></FlashSaleTable>}></Route>
+              <Route path='/dashboard/upload-flash-sale' element={<UploadFlashSale></UploadFlashSale>}></Route>
         </Routes>
         
-        <Footer></Footer>
+        {/* <Footer></Footer> */}
         <MessengerCustomerChat
     pageId="121253954413161" 
     appId="1035703037435590"

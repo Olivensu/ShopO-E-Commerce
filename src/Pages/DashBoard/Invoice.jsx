@@ -22,88 +22,107 @@ const Invoice = () => {
                 setTimeout(() => {
                     window.print();
                     navigate(-1)
-                }, 1000);
+                }, 500);
             })
 
       }, [user])
       if(loading){
         return <Loading></Loading>
       }
+      const price = orderItem?.orders?.reduce((acc, item) =>{
+        const itemPrice = item.cartItem.discountPrice*item.cartItem.quantity;
+        const itemTotal = itemPrice + item.cartItem.shipping;
+        return  acc+itemTotal
+      },0)
     return (
-        <div  className="w-full print:w-full p-1 pt-2">
+      <div className="w-full print:w-full p-5 pt-2">
+        <div className="text-right">
+          <p>ShopO Limited</p>
+          <p>
+            House 10 (4th Floor), Main Road, Block C,
+            <br /> Banasree, Rampura, Dhaka 1219
+          </p>
+        </div>
         <div>
-          <div className="text-start my-5 shadow-md w-full min-w-[600px] mx-3 m-auto p-1 shadow-orange rounded-xl">
+          <p className="bg-gray my-5 py-1 text-xl font-bold bg-opacity-50 rounded-xl">
+            SALES INVOICE
+          </p>
+          <div className="text-start my-5 shadow-md w-full min-w-[600px] m-auto p-1 shadow-orange rounded-xl">
             {!orderItem ? (
               <p className="text-xl">No Order Here...</p>
             ) : (
-                <div
-                  className="my-3 bg-base-200 p-1 shadow-lg shadow-purple rounded-xl border-2 border-y-orange border-x-pink"
-                >
-                  {orderItem?.orders?.map((item, index) => (
-                    <div
-                      className="flex justify-around items-center mb-5"
-                      key={item._id}
-                    >
-                      <div className="flex items-center text-start">
-                        <img
-                          className="w-20 mx-5 h-20"
-                          src={`${
-                            import.meta.env.VITE_BACKEND_URL
-                          }/image/users/${item.cartItem.image}`}
-                          alt=""
-                        />
-                        <div className="">
-                          <p className="font-bold ">{item.cartItem.name}</p>
-                          <p className="">{item.cartItem.shop}</p>
-                          <p className="text-sm line-through">
-                            ৳ {item.cartItem.price}
-                          </p>
-                          <p className="text-sm font-bold ">
-                            ৳ {item.cartItem.discountPrice}
-                          </p>
-                        </div>
-                      </div>
-                      <div>
-                        <div className="flex flex-col items-center py-2 font-bold">
-                          {/* <button onClick={()=>handleQuantityChange(item._id, -1)} className="btn btn-sm btn-secondary text-white font-bold text-xl mx-5">-</button>
-                      <p className="border-2 px-2 rounded-lg">{()=>setQuantity(item.quantity)}</p>
-                      <p className="border-2 px-2 rounded-lg">{item.quantity}</p>
-                      
-                      <button onClick={()=>handleQuantityChange(item._id, 1)}  className="btn btn-sm btn-secondary text-white font-bold text-xl mx-5">+</button> */}
-                          <p className="border-2 px-2 rounded-lg mb-5">
-                            Quantity {orderItem.quantity}
-                          </p>
-                          {/* <div className="inline-block cursor-pointer" onClick={()=>handleDeleteItem(item._id)}>
-                      <DeleteIcon
-                                  color="warning"
-                                  style={{ fontSize: "2rem" }}
-                                ></DeleteIcon>
-                      </div> */}
-                        </div>
-                      </div>
-                      {/* Render additional details about the cartItem if needed */}
+              <div className="">
+                <div className="p-3">
+                  <div className="grid grid-cols-2 ">
+                    <div className="space-y-2">
+                      <p>
+                        <b>Billing Address</b>
+                      </p>
+                      <p className="">
+                        <b>Name:</b> {orderItem.name}
+                      </p>
+                      <p className="">
+                        <b>Address:</b> {orderItem.address}
+                      </p>
+                      <p className="">
+                        <b>Phone:</b> {orderItem.phone}
+                      </p>
                     </div>
-                  ))}
-                  <div className="grid justify-items-center grid-cols-3 gap-5 mt-5">
-                    <p className="">
-                      <b>Name:</b> {orderItem.name}
-                    </p>
-                    <p className="">
-                      <b>Address:</b> {orderItem.address}
-                    </p>
-                    <p className="">
-                      <b>Phone:</b> {orderItem.phone}
-                    </p>
-                    <p className=" px-2 ml-10 inline-block rounded-lg">
-                      <b>Ordered date:</b> {orderItem.createdAt}
-                    </p>
-                    <p className=" px-2 ml-10 inline-block rounded-lg">
-                      <b>Status:</b> {orderItem.status}
-                    </p>
+                    <div className="space-y-2">
+                      <p className=" px-2 ml-10  rounded-lg">
+                        <b>Invoice No:</b> {orderItem._id}
+                      </p>
+                      <p className=" px-2 ml-10  rounded-lg">
+                        <b>Invoice date:</b> {Date().slice(0, 16)}
+                      </p>
+                      <p className=" px-2 ml-10  rounded-lg">
+                        <b>Ordered date:</b> {orderItem.createdAt}
+                      </p>
+                    </div>
                   </div>
+                  <table className="table table-zebra my-8 w-full">
+                    {/* head */}
+                    <thead className="bg-black">
+                      <tr className=" text-white">
+                        <th>Item ID</th>
+                        <th>Name</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Shipping</th>
+                        <th>Total Price</th>
+                      </tr>
+                    </thead>
+                    <tbody >
+                      {orderItem?.orders?.map((data) => (
+                        <tr key={data._id}>
+                          <th className="text-sm">{data.cartItem._id}</th>
+                          <th className="">{data.cartItem.name}</th>
+                          <th className="">{data.cartItem.quantity}</th>
+                          <th className="">Tk-{data.cartItem.discountPrice}</th>
+                          <th className="">Tk-{data.cartItem.shipping}</th>
+                          <th className="">
+                            Tk-
+                            {(data.cartItem.quantity *
+                              data.cartItem.discountPrice) + data.cartItem.shipping}
+                          </th>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className='flex justify-end px-5 text-lg'>
+                    <p className=""><b>Total Price:</b></p>
+                    <p className="ml-5">TK-{price}</p>
+                  </div>
+                  <div className="py-5 text-start space-y-2">
+                    <p>* Total charges for this shipment include prepaid custom duties and other taxes  as applicable for the merchandise to be delivered to the address in the country specifies by the customer.</p>
+                    <p>For return policy contact us: <span className='text-orange'>09696-010506 || 01966-050506</span></p>
+                    <p>Need Help? contact us: <span className='text-orange'>09696-010506 || 01966-050506</span></p>
+                    <p>Have a great day! Thank you for shopping on <span className='text-orange'>https://ecommerce.easysheba.com/</span></p>
+                  </div>
+                  <div></div>
                 </div>
-              )
-            }
+              </div>
+            )}
           </div>
         </div>
       </div>

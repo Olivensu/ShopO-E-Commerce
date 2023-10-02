@@ -137,10 +137,11 @@ function SideBar(){
                   >
                     <EventIcon style={{ fontSize: "2rem" }} />
                   </IconButton>,
-                    height: 60,
+                    height: 90,
                     links:[
                         {name:'Slider',link:'/dashboard/slider'},
                         {name:'Campaign',link:'/dashboard/campaign'},
+                        {name:'FlashSale',link:'/dashboard/flashsale'},
                     ]
                 },
             ]);
