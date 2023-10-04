@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Slider } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
 // import { Link } from 'react-router-dom';
@@ -13,13 +13,14 @@ const TotalProducts = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [priceRange, setPriceRange] = useState([1, 200000]);
+  const {isEvent} = useParams()
+  console.log(isEvent)
 
   useEffect(() => {
     // Fetch products and categories data on component mount
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product/`)
       .then((res) => {
         setProducts(res.data.payload);
-        console.log(res.data.payload.length);
       });
 
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/category`)
@@ -58,14 +59,24 @@ const TotalProducts = () => {
   const filterProducts = (product) => {
     const categoryFilter = !selectedCategory || product.category === selectedCategory;
     const priceFilter = product.discountPrice >= priceRange[0] && product.discountPrice <= priceRange[1];
-
     return categoryFilter && priceFilter;
   };
 
   let filteredProducts = products.filter(filterProducts);
+  if(isEvent === 'isFlashSale'){
+    filteredProducts = products.filter(data=>data.isFlashSale === true)
+  }
+  else if(isEvent === 'isDealDay'){
+    filteredProducts = products.filter(data=>data.isDealDay === true)
+  }
+  else if(isEvent === 'isTrending'){
+    filteredProducts = products.filter(data=>data.isTrending === true)
+  }
+  else if(isEvent === 'isPopular'){
+    filteredProducts = products.filter(data=>data.isPopular === true)
+  }
   const ITEMS_PER_PAGE = 8;
   const totalItems = filteredProducts.length;
-  console.log(totalItems);
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
   let startIndex = (currentPage - 1) * ITEMS_PER_PAGE;

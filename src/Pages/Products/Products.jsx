@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 const Products = () => {
     const [products, setProducts] = useState([])
     const navigate = useNavigate();
-
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/product/`)
             .then(res=>{
@@ -24,7 +23,7 @@ const Products = () => {
     return (
         <div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
-                {products.map((data) => (
+                {products?.map((data) => (
                   <div
                     className="w-40 p-2 rounded-2xl border-x-red border-y-orange m-auto  bg-white border-2 my-5"
                     key={data._id}

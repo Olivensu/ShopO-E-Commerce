@@ -56,9 +56,17 @@ import UploadCampaign from './Pages/DashBoard/UploadCampaign';
 import Layout from './Pages/Shared/Layout';
 import FlashSaleTable from './Pages/DashBoard/FlashSaleTable';
 import UploadFlashSale from './Pages/DashBoard/UploadFlashSale';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../firebase.init';
+import Loading from './Pages/Shared/Loading';
+import EventShop from './Pages/Shop/EventShop';
 
 
 function App() {
+  const [user, loading,] = useAuthState(auth);
+  if(loading){
+    return <Loading></Loading>
+  }
   function ScrollToTop() {
     const { pathname } = useLocation();
   
@@ -84,8 +92,9 @@ function App() {
           <Route path="/create-categories" element={<Layout><PrivateRoute><CreateCategories></CreateCategories></PrivateRoute></Layout>}></Route>
           <Route path="/create-shop" element={<Layout><PrivateRoute><CreateShop></CreateShop></PrivateRoute></Layout>}></Route>
           <Route path='/shop/:slug' element={<Layout><ShopDetails></ShopDetails></Layout>}></Route>
-          <Route path='/products' element={<Layout><TotalProducts></TotalProducts></Layout>}></Route>
+          <Route path='/products/:isEvent' element={<Layout><TotalProducts></TotalProducts></Layout>}></Route>
           <Route path='/shop' element={<Layout><TotalShop></TotalShop></Layout>}></Route>
+          <Route path='/shop/event/:eventShop' element={<Layout><EventShop></EventShop></Layout>}></Route>
           <Route path='/create-product/:shopSlug' element={<Layout><PrivateRoute><CreateProduct></CreateProduct></PrivateRoute></Layout>}></Route>
           <Route path='/product/:id' element={<Layout><ProductDetails></ProductDetails></Layout>}></Route>
           <Route path='/orders' element={<Layout><PrivateRoute><Orders></Orders></PrivateRoute></Layout>}></Route>
